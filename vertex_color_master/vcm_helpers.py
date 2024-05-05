@@ -570,7 +570,7 @@ def get_validated_input(context, get_src, get_dst):
 
     # are these conditions actually possible?
     if message is None:
-        if (src_type == type_vcol or dst_type == type_vcol) and mesh.vertex_colors is None:
+        if (src_type == type_vcol or dst_type == type_vcol) and mesh.color_attributes is None:
             message = "Object has no vertex colors."
         if (src_type == type_vgroup or dst_type == type_vgroup) and obj.vertex_groups is None:
             message = "Object has no vertex groups."
@@ -580,8 +580,8 @@ def get_validated_input(context, get_src, get_dst):
     # validate src
     if get_src and message is None:
         if src_type == type_vcol:
-            if src_id in mesh.vertex_colors:
-                rv['src_vcol'] = mesh.vertex_colors[src_id]
+            if src_id in mesh.color_attributes:
+                rv['src_vcol'] = mesh.color_attributes[src_id]
                 rv['src_channel_idx'] = channel_id_to_idx(settings.src_channel_id)
             else:
                 message = "Src color layer is not valid."
@@ -603,8 +603,8 @@ def get_validated_input(context, get_src, get_dst):
     # validate dst
     if get_dst and message is None:
         if dst_type == type_vcol:
-            if dst_id in mesh.vertex_colors:
-                rv['dst_vcol'] = mesh.vertex_colors[dst_id]
+            if dst_id in mesh.color_attributes:
+                rv['dst_vcol'] = mesh.color_attributes[dst_id]
                 rv['dst_channel_idx'] = channel_id_to_idx(settings.dst_channel_id)
             else:
                 message = "Dst color layer is not valid."
